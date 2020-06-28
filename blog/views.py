@@ -15,12 +15,12 @@ def home(request):
     content = {
         'profiles': TutorProfile.objects.all()
     }
-    return render(request, 'tutor_search/home.html', content)
+    return render(request, 'blog/home.html', content)
 
 
 class PostListView(ListView):
     model = TutorProfile
-    template_name = 'tutor_search/home.html'  # <app>/<model>_<viewtype>.html
+    template_name = 'blog/home.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'profiles'
     ordering = ['-date_posted']
     paginate_by = 5
@@ -28,7 +28,7 @@ class PostListView(ListView):
 
 # class UserPostListView(ListView):
 #     model = TutorProfile
-#     template_name = 'tutor_search/user_posts.html'  # <app>/<model>_<viewtype>.html
+#     template_name = 'blog/user_posts.html'  # <app>/<model>_<viewtype>.html
 #     context_object_name = 'posts'
 #     paginate_by = 5
 #
@@ -39,7 +39,7 @@ class PostListView(ListView):
 
 class ProfileDetailView(DetailView):
     model = TutorProfile
-    template_name = 'tutor_search/profile_detail.html'
+    template_name = 'blog/profile_detail.html'
 
 
 # class PostCreateView(LoginRequiredMixin, CreateView):
@@ -78,4 +78,4 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 def about(request):
-    return render(request, 'tutor_search/about.html', {'title': 'About'})
+    return render(request, 'blog/about.html', {'title': 'About'})
