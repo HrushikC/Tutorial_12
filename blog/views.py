@@ -8,51 +8,51 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Post
+from .models import TutorProfile
 
 
 def home(request):
-    context = {
-        'posts': Post.objects.all()
+    content = {
+        'profiles': TutorProfile.objects.all()
     }
-    return render(request, 'blog/home.html', context)
+    return render(request, 'blog/home.html', content)
 
 
 class PostListView(ListView):
-    model = Post
+    model = TutorProfile
     template_name = 'blog/home.html'  # <app>/<model>_<viewtype>.html
-    context_object_name = 'posts'
+    context_object_name = 'profiles'
     ordering = ['-date_posted']
     paginate_by = 5
 
 
 class UserPostListView(ListView):
-    model = Post
+    model = TutorProfile
     template_name = 'blog/user_posts.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     paginate_by = 5
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Post.objects.filter(author=user).order_by('-date_posted')
+        return TutorProfile.objects.filter(author=user).order_by('-date_posted')
 
 
-class PostDetailView(DetailView):
-    model = Post
+class ProfileDetailView(DetailView):
+    model = TutorProfile
 
 
-class PostCreateView(LoginRequiredMixin, CreateView):
-    model = Post
-    fields = ['title', 'content']
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+# class PostCreateView(LoginRequiredMixin, CreateView):
+#     model = TutorProfile
+#     fields = ['name', 'bio']
+#
+#     def form_valid(self, form):
+#         form.instance.author = self.request.user
+#         return super().form_valid(form)
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = Post
-    fields = ['title', 'content']
+    model = TutorProfile
+    fields = ['name', 'bio']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -66,7 +66,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = Post
+    model = TutorProfile
     success_url = '/'
 
     def test_func(self):
