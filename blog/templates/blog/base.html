@@ -11,11 +11,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:400&display=swap" rel="stylesheet">     <!--  comfortaa font import-->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:wght@700&display=swap" rel="stylesheet"> <!-- Lobster font import-->
+      
 
     {% if title %}
-        <title>Django Blog - {{ title }}</title>
+        <title>Tutor Site - {{ title }}</title>
     {% else %}
-        <title>Django Blog</title>
+        <title>Tutor Site</title>
     {% endif %}
     <link rel="shortcut icon" href="{% static 'blog/favicon.ico' %}"/>
 </head>
@@ -23,7 +26,7 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Django Blog</a> <!--change to domain name or place logo-->
+          <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Tutor Site</a> <!--change to domain name or place logo-->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
@@ -60,7 +63,7 @@
           {% block content %}{% endblock %}
         </div>
         <div class="col-md-4">
-          <div class="content-section">
+          <div class="content-section fixed-position">
             <h3>Our Sidebar</h3>
             <p class='text-muted'>You can put any information here you'd like.
               <ul class="list-group">
