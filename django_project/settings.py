@@ -28,11 +28,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-<<<<<<< HEAD
-    'tutor_search.apps.TutorSearchConfig',
-=======
+    #'tutor_search.apps.TutorSearchConfig',
     'blog.apps.TutorSearchConfig',
->>>>>>> 6995655cb39e6d8b62ac8f4ab107b0d4ab5d1ae5
     'users.apps.UsersConfig',
     'crispy_forms',
     'django.contrib.admin',
@@ -129,7 +126,7 @@ MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'tutor_search-home'
+LOGIN_REDIRECT_URL = 'blog-home'
 LOGIN_URL = 'login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
