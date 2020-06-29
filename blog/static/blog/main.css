@@ -52,6 +52,20 @@ ul {
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
+  transition: box-shadow 0.3s;
+}
+
+.content-section:hover {
+  box-shadow: 4px 4px 7px 0px black;
+}
+
+.list-group-item {
+  transition: background-color 0.3s, box-shadow 0.15s;
+}
+.list-group-item:hover {
+  background-color: #f3f3f3;
+  box-shadow: 1px 1px 2px 0px rgb(0, 0, 0);
+
 }
 
 .article-title {
