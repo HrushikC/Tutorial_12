@@ -28,7 +28,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+<<<<<<< HEAD
     'tutor_search.apps.TutorSearchConfig',
+=======
+    'blog.apps.TutorSearchConfig',
+>>>>>>> 6995655cb39e6d8b62ac8f4ab107b0d4ab5d1ae5
     'users.apps.UsersConfig',
     'crispy_forms',
     'django.contrib.admin',
