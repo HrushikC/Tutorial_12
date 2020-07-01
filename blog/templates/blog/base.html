@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'blog/sb-admin-2.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
-
+    <script src="{% static 'blog/icons.js' %}"></script>
 
 
     <link href="https://fonts.googleapis.com/css?family=Comfortaa:400&display=swap" rel="stylesheet">     <!--  comfortaa font import-->
@@ -36,8 +36,9 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
-              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About Us</a>
+                <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
+                <a class="nav-item nav-link" href="{% url 'blog-about' %}">About Us</a>
+                <a class="nav-item nav-link" href="{% url 'blog-browseTutors' %}">Browse Tutors</a> <!--This link will be later placed under the services dropdown-->
               <!-- Add services dropdown here. View doc to see what I mean abt services. -->
             </div>
             <!-- Navbar Right Side -->

@@ -10,17 +10,19 @@ from django.views.generic import (
 )
 from .models import TutorProfile
 
-
 def home(request):
+    return render(request, 'blog/home.html', {'title': 'Home'})
+
+def browseTutors(request):
     content = {
         'profiles': TutorProfile.objects.all()
     }
-    return render(request, 'blog/home.html', content)
+    return render(request, 'blog/browse_tutors.html', content)
 
 
-class PostListView(ListView):
+class ProfileListView(ListView):
     model = TutorProfile
-    template_name = 'blog/home.html'  # <app>/<model>_<viewtype>.html
+    template_name = 'blog/browse_tutors.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'profiles'
     ordering = ['-date_posted']
     paginate_by = 5
