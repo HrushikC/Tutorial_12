@@ -10,7 +10,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/sb-admin-2.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+
+
+
     <link href="https://fonts.googleapis.com/css?family=Comfortaa:400&display=swap" rel="stylesheet">     <!--  comfortaa font import-->
     <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:wght@700&display=swap" rel="stylesheet"> <!-- Lobster font import-->
       
@@ -63,15 +67,16 @@
           {% block content %}
           {% endblock %}
         </div>
+        
         <div class="col-md-4">
           <div class="content-section fixed-position">
-            <h3>Our Sidebar</h3>
+            <h3>Filter Search</h3>
             <p class='text-muted'>You can put any information here you'd like.
               <ul class="list-group">
-                <li class="list-group-item">Latest Posts</li>
-                <li class="list-group-item">Announcements</li>
-                <li class="list-group-item">Calendars</li>
-                <li class="list-group-item">etc</li>
+                <li class="list-group-item">Experience </li>
+                <li class="list-group-item">Location</li>
+                <li class="list-group-item">Subject</li>
+                <li class="list-group-item">Price</li>
               </ul>
             </p>
           </div>
