@@ -125,3 +125,22 @@ a.article-title:hover {
   border-color: var(--navbar-color);
   color: var(--navbar-text-color-hover);
 }
+
+.btn-outline-info:not(:disabled):not(.disabled).active, .btn-outline-info:not(:disabled):not(.disabled):active, .show>.btn-outline-info.dropdown-toggle {
+  color: var(--navbar-text-color-hover);
+  background-color: var(--navbar-color);
+  border-color: var(--navbar-color);
+}
+
+.btn-info:not(:disabled):not(.disabled).active, .btn-info:not(:disabled):not(.disabled):active, .show>.btn-info.dropdown-toggle {
+  color: var(--navbar-text-color-hover);
+  background-color: var(--navbar-color);
+  border-color: var(--navbar-color);
+}
+
+.btn-info.focus, .btn-info:focus {
+  color: var(--navbar-text-color-hover);
+  background-color: var(--navbar-color);
+  border-color: var(--navbar-color);
+  box-shadow: 0 0 0 0.2rem black;
+}
