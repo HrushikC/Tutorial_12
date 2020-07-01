@@ -20,6 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'exhlfdat&vfum(-34*c2uroi(($ww(yo$9pv98=e6p^gl(-eoj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# Turn off debug to see the 404 page
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'django_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, '..blog/templates/blog/404.html')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
