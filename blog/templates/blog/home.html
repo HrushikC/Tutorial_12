@@ -6,7 +6,7 @@
           <div class="media-body">
             <div class="article-metadata">
               <a class="mr-2" href="{% url 'profile-detail' profile.id %}">{{ profile.author }}</a>
-              <small class="text-muted">{{ profile.date_posted|date:"F d, Y" }}</small>
+              <!--<small class="text-muted">{{ profile.date_posted|date:"F d, Y" }}</small>-->
             </div>
             <p class="article-content">{{ profile.bio }}</p>
           </div>

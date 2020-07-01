@@ -79,3 +79,8 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
+
+# Test 404. Temporary Path. Remove method when debug = true.
+def error404(request):
+    return render(request, 'blog/404.html', {'title': 'Test-404'})
+

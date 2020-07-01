@@ -9,7 +9,10 @@ class TutorProfile(models.Model):
     bio = models.TextField()
     # subjects = models.---Choices()---
     date_posted = models.DateTimeField(default=timezone.now)
+
+    # user = models.OneToOneField(User, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    # will replace author with user^ after new database where each account has only one tutorprofile
 
     def __str__(self):
         return self.name
