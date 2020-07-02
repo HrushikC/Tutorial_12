@@ -11,18 +11,18 @@ from django.views.generic import (
 from .models import TutorProfile
 
 def home(request):
-    return render(request, 'blog/home.html', {'title': 'Home'})
+    return render(request, 'tutor/home.html', {'title': 'Home'})
 
 def browseTutors(request):
     content = {
         'profiles': TutorProfile.objects.all()
     }
-    return render(request, 'blog/browse_tutors.html', content)
+    return render(request, 'tutor/browse_tutors.html', content)
 
 
 class ProfileListView(ListView):
     model = TutorProfile
-    template_name = 'blog/browse_tutors.html'  # <app>/<model>_<viewtype>.html
+    template_name = 'tutor/browse_tutors.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'profiles'
     ordering = ['-date_posted']
     paginate_by = 5
@@ -30,7 +30,7 @@ class ProfileListView(ListView):
 
 # class UserPostListView(ListView):
 #     model = TutorProfile
-#     template_name = 'blog/user_posts.html'  # <app>/<model>_<viewtype>.html
+#     template_name = 'tutor/user_posts.html'  # <app>/<model>_<viewtype>.html
 #     context_object_name = 'posts'
 #     paginate_by = 5
 #
@@ -41,7 +41,7 @@ class ProfileListView(ListView):
 
 class ProfileDetailView(DetailView):
     model = TutorProfile
-    template_name = 'blog/profile_detail.html'
+    template_name = 'tutor/profile_detail.html'
 
 
 # class PostCreateView(LoginRequiredMixin, CreateView):
@@ -80,9 +80,9 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 def about(request):
-    return render(request, 'blog/about.html', {'title': 'About'})
+    return render(request, 'tutor/about.html', {'title': 'About'})
 
 # Test 404. Temporary Path. Remove method when debug = true.
 def error404(request):
-    return render(request, 'blog/404.html', {'title': 'Test-404'})
+    return render(request, 'tutor/404.html', {'title': 'Test-404'})
 
