@@ -53,7 +53,7 @@ class ProfileDetailView(DetailView):
 #         return super().form_valid(form)
 
 
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class ProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = TutorProfile
     fields = ['name', 'bio']
 
@@ -68,7 +68,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
 
 
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = TutorProfile
     success_url = '/'
 
@@ -82,7 +82,8 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 def about(request):
     return render(request, 'tutor/about.html', {'title': 'About'})
 
-# Test 404. Temporary Path. Remove method when debug = true.
+
+# Test 404. Temporary Path. Remove method when debug = false.
 def error404(request):
     return render(request, 'tutor/404.html', {'title': 'Test-404'})
 

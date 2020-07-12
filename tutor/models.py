@@ -5,22 +5,23 @@ from django.urls import reverse
 
 
 class TutorProfile(models.Model):
-    name = models.CharField(max_length=100)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField()
-    # subjects = models.---Choices()---
-    # online = true;false
-    # rating = unrated; double
-    # fee = option of fee; free
-    # location = get location from ip address; field to get number of miles they are willing to travel.
-    # profile_status = hidden;shown
+    # subjects = models.CharField(max_length=300)
+    zipcode = models.CharField(max_length=5, default=None)
+    tutor_methods = models.TextChoices('medium of instruction', 'Online In-Person Both')
+    method = models.CharField(choices=tutor_methods.choices, max_length=10, default=None)
+    resume = models.FileField(default=None, upload_to='resumes')
+    rating = models.FloatField(default=None)
+    fee = models.IntegerField(default=None)
+    travel_distance = models.IntegerField(default=0)
+    is_hidden = models.BooleanField(default=False)
     date_posted = models.DateTimeField(default=timezone.now)
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
     # author = models.ForeignKey(User, on_delete=models.CASCADE)
-    # will replace author with user^ after new database where each account has only one tutorprofile
 
     def __str__(self):
-        return self.name
+        return self.account.name
 
     def get_absolute_url(self):
-        return reverse('profile-detail', kwargs={'pk': self.pk})
+        return reverse('profile-detail', kwargs={'username': self.account.user})

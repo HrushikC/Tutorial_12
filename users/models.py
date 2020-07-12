@@ -5,10 +5,13 @@ from PIL import Image
 
 class Account(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # first_name = models.CharField(max_length=30, default=User.first_name)
+    # last_name = models.CharField(max_length=30, default=User.last_name)
+    is_tutor = models.BooleanField(default=False)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
     def __str__(self):
-        return f"{self.user.username}'s Account"
+        return f"{self.user}'s Account"
 
     def save(self, *args, **kwargs):
         super(Account,self).save(*args, **kwargs)
