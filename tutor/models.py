@@ -21,7 +21,7 @@ class TutorProfile(models.Model):
     # author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.account.name
+        return self.user.username
 
     def get_absolute_url(self):
-        return reverse('profile-detail', kwargs={'username': self.account.user})
+        return reverse('profile-detail', kwargs={'username': self.user})

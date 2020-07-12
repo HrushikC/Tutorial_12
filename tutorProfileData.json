@@ -1,0 +1,44 @@
+[
+  {
+    "bio": "I'm 16 and have completed all the math courses at my high school by my junior year and have qualified to numerous high level math competitions. I got a 36 on the ACT and 1540 SAT.",
+    "zipcode": "43016",
+    "method": "Online",
+    "fee": 0,
+    "user_id": 1
+  },
+  {
+    "bio": "I'm 23 and a current high school english teacher. I'm also qualified to teach high school history subjects.",
+    "zipcode": "34653",
+    "method": "In-Person",
+    "fee": 20,
+    "user_id": 2
+  },
+  {
+    "bio": "I'm 35 and a professor at a community college.",
+    "zipcode": "30043",
+    "method": "Online",
+    "fee": 10,
+    "user_id": 3
+  },
+  {
+    "bio": "I'm a 23 year old grad student working towards becoming a doctor.",
+    "zipcode": "33905",
+    "method": "Both",
+    "fee": 10,
+    "user_id": 4
+  },
+  {
+    "bio": "I'm a 22 year old grad student in engineering.",
+    "zipcode": "12590",
+    "method": "In-Person",
+    "fee": 15,
+    "user_id": 5
+  },
+  {
+    "bio": "I'm a 29 year old teacher in New York. I teach history and politics.",
+    "zipcode": "44663",
+    "method": "In-Person",
+    "fee": 20,
+    "user_id": 6
+  }
+]
