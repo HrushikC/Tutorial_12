@@ -2,13 +2,14 @@
 {% block content %}
     {% for profile in profiles %}
         <article class="media mb-4 content-section">
-          <img class="rounded article-img" src="{{ profile.author.profile.image.url }}">
+          <img class="rounded article-img" src="{{ profile.user.account.image.url }}">
           <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="{% url 'profile-detail' profile.id %}">{{ profile.author }}</a>
+              <a class="mr-2" href="{% url 'profile-detail' profile.user.id %}">{{ profile.user }}</a>
               <!--<small class="text-muted">{{ profile.date_posted|date:"F d, Y" }}</small>-->
             </div>
-            <p class="article-content">{{ profile.bio }}</p>
+            <p class="article-content">Bio: {{ profile.bio }}</p>
+            <p class="article-content">Hourly Fee: ${{ profile.fee }}</p>
           </div>
         </article>
 
