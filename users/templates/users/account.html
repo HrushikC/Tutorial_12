@@ -8,6 +8,7 @@
           <h2 class="account-heading">{{ user.username }}</h2>
           <p class="text-secondary">{{ user.email }}</p>
         </div>
+
       </div>
       <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
@@ -19,6 +20,11 @@
           <div class="form-group">
               <button class="btn btn-outline-info" type="submit">Update</button>
           </div>
+          are you a tutor
+        <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+        </label>
       </form>
     </div>
     </br>
