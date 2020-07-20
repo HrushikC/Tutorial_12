@@ -5,15 +5,13 @@
     <div class="media-body">
       <div class="article-metadata">
         <h2 class="mr-2">{{ object.user }}</h2>
-        <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+        <!--<small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>-->
         {% if object.user == user %}
           <div>
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'profile-update' object.user %}">Update</a>
-            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'profile-delete' object.user %}">Delete</a>
+            <a class="btn btn-outline-info btn-sm mt-1 mb-1" href="{% url 'profile-update' object.user.id %}">Update</a>
           </div>
         {% endif %}
       </div>
-      <h2 class="article-title">{{ object.name }}</h2>
       <p class="article-content">{{ object.bio }}</p>
     </div>
   </article>

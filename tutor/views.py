@@ -40,9 +40,10 @@ class ProfileListView(ListView):
 
 
 class ProfileDetailView(DetailView):
-    model = TutorProfile
     template_name = 'tutor/profile_detail.html'
 
+    def get_object(self):
+        return get_object_or_404(TutorProfile, user_id=self.kwargs['pk'])
 
 # class PostCreateView(LoginRequiredMixin, CreateView):
 #     model = TutorProfile
@@ -54,29 +55,31 @@ class ProfileDetailView(DetailView):
 
 
 class ProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = TutorProfile
-    fields = ['name', 'bio']
+    fields = ['bio', 'method', 'fee', 'zipcode']
+
+    def get_object(self):
+        return get_object_or_404(TutorProfile, user_id=self.kwargs['pk'])
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
     def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.author:
+        profile = self.get_object()
+        if self.request.user == profile.user:
             return True
         return False
 
 
-class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = TutorProfile
-    success_url = '/'
-
-    def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.author:
-            return True
-        return False
+# class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+#     model = TutorProfile
+#     success_url = '/'
+#
+#     def test_func(self):
+#         post = self.get_object()
+#         if self.request.user == post.author:
+#             return True
+#         return False
 
 
 def about(request):
