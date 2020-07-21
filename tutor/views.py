@@ -67,6 +67,7 @@ class ProfileCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     # At a later phase, we will delete the hashtags up top to reveal the other code after doing more testing.
     # Profile Create Permissions --ISSUE--
 
+
 class ProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     fields = ['bio', 'method', 'fee', 'zipcode', 'resume', 'contact_info']
     template_name = 'tutor/tutorprofile_update_form.html'
