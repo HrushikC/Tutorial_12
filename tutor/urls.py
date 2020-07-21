@@ -9,7 +9,7 @@ urlpatterns = [
     path('404/', views.error404, name='test-404'),
     # path('user/<str:username>', UserPostListView.as_view(), name='user-profile'),
     path('profile/<int:pk>/', ProfileDetailView.as_view(), name='profile-detail'),
-    # path('post/new/', PostCreateView.as_view(), name='post-create'),
     path('profile/<int:pk>/update/', ProfileUpdateView.as_view(), name='profile-update'),
+    path('profile/create/', ProfileCreateView.as_view(), name='profile-create'),
     # path('profile/<int:pk>/delete/', ProfileDeleteView.as_view(), name='profile-delete'),
 ]

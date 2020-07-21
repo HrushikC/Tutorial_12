@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import (
@@ -9,9 +9,12 @@ from django.views.generic import (
     DeleteView
 )
 from .models import TutorProfile
+from users.models import Account
+
 
 def home(request):
     return render(request, 'tutor/home.html', {'title': 'Home'})
+
 
 def browseTutors(request):
     content = {
@@ -45,17 +48,28 @@ class ProfileDetailView(DetailView):
     def get_object(self):
         return get_object_or_404(TutorProfile, user_id=self.kwargs['pk'])
 
-# class PostCreateView(LoginRequiredMixin, CreateView):
-#     model = TutorProfile
-#     fields = ['name', 'bio']
-#
-#     def form_valid(self, form):
-#         form.instance.author = self.request.user
-#         return super().form_valid(form)
 
+class ProfileCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+    model = TutorProfile
+    fields = ['bio', 'method', 'fee', 'zipcode', 'resume', 'contact_info']
+    template_name = 'tutor/tutorprofile_create_form.html'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        tp_qset = TutorProfile.objects.filter(user_id=self.request.user.id)
+        # account_qset = Account.objects.filter(user_id=self.request.user.id).values()
+        if not tp_qset: # and account_qset[0]['is_tutor']:
+            return True
+        return False
+    # At a later phase, we will delete the hashtags up top to reveal the other code after doing more testing.
+    # Profile Create Permissions --ISSUE--
 
 class ProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    fields = ['bio', 'method', 'fee', 'zipcode']
+    fields = ['bio', 'method', 'fee', 'zipcode', 'resume', 'contact_info']
+    template_name = 'tutor/tutorprofile_update_form.html'
 
     def get_object(self):
         return get_object_or_404(TutorProfile, user_id=self.kwargs['pk'])
