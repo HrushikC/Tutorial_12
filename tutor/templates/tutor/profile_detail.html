@@ -12,7 +12,15 @@
           </div>
         {% endif %}
       </div>
-      <p class="article-content">{{ object.bio }}</p>
+      <p class="article-content">Bio: {{ object.bio }}</p>
+      {% if object.method == 'Both' %}
+        <p class="article-content">Method of Instruction: Either Online or In-Person</p>
+      {% else %}
+        <p class="article-content">Method of Instruction: {{ object.method }}</p>
+      {% endif %}
+      <p class="article-content">Hourly Fee: ${{ object.fee }}</p>
+      <p class="article-content">Contact Info: {{ object.contact_info }}</p>
+
     </div>
   </article>
 {% endblock content %}
