@@ -1,18 +1,24 @@
 {% extends "tutor/base.html" %}
 {% block content %}
     {% for profile in profiles %}
-        <article class="media mb-4 content-section">
-          <img class="rounded article-img" src="{{ profile.user.account.image.url }}">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="{% url 'profile-detail' profile.user.id %}">{{ profile.user }}</a>
-              <!--<small class="text-muted">{{ profile.date_posted|date:"F d, Y" }}</small>-->
-            </div>
-            <p class="article-content">Bio: {{ profile.bio }}</p>
-            <p class="article-content">Hourly Fee: ${{ profile.fee }}</p>
-          </div>
-        </article>
-
+        {% if not profile.is_hidden %}
+            <article class="media mb-4 content-section">
+                <img class="rounded article-img" src="{{ profile.user.account.image.url }}">
+                <div class="media-body">
+                    <div class="article-metadata">
+                        <a class="mr-2" href="{% url 'profile-detail' profile.user.id %}">{{ profile.user }}</a>
+                        <!--<small class="text-muted">{{ profile.date_posted|date:"F d, Y" }}</small>-->
+                    </div>
+                    <p class="article-content">Bio: {{ profile.bio }}</p>
+                    {% if profile.method == 'Both' %}
+                    <p class="article-content">Method of Instruction: Either Online or In-Person</p>
+                    {% else %}
+                    <p class="article-content">Method of Instruction: {{ profile.method }}</p>
+                    {% endif %}
+                    <p class="article-content">Hourly Fee: ${{ profile.fee }}</p>
+                </div>
+            </article>
+        {% endif %}
     {% endfor %}
     {% if is_paginated %}
 

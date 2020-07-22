@@ -15,15 +15,14 @@ from users.models import Account
 def home(request):
     return render(request, 'tutor/home.html', {'title': 'Home'})
 
+# def browseTutors(request):
+#     content = {
+#         'profiles': TutorProfile.objects.all()
+#     }
+#     return render(request, 'tutor/browse_tutors.html', content)
 
-def browseTutors(request):
-    content = {
-        'profiles': TutorProfile.objects.all()
-    }
-    return render(request, 'tutor/browse_tutors.html', content)
 
-
-class ProfileListView(ListView):
+class TutorProfileListView(ListView):
     model = TutorProfile
     template_name = 'tutor/browse_tutors.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'profiles'
@@ -42,7 +41,7 @@ class ProfileListView(ListView):
 #         return TutorProfile.objects.filter(author=user).order_by('-date_posted')
 
 
-class ProfileDetailView(DetailView):
+class ProfileDetailView(LoginRequiredMixin, DetailView):
     template_name = 'tutor/profile_detail.html'
 
     def get_object(self):
