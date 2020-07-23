@@ -1,16 +1,28 @@
 :root {
-  --navbar-color: rgb(0, 70, 139);
-  --navbar-text-color:  #2afd00;
+  --navbar-color: rgb(0, 78, 116);
+  --navbar-text-color:  rgb(255, 255, 255);
   --navbar-text-color-hover: #ffffff;
   --comfortaa-font: "Comfortaa", sans-serif;
   --lobster-font: 'Lobster Two', cursive;
-  --site-background: #ffffff;
-  --panel-background: #ffffff;
+  --site-background: #c92d2d;
+  --panel-background: rgb(255, 255, 255);
+  --site-text-color: rgb(66, 87, 118);
+  --secondary-color: rgb(15, 177, 239);
+}
+
+
+.bgimg-1 {
+  background-image: url('wpp2.jpg');
+  background-attachment: fixed; 
+  background-position: center; 
+ background-repeat: no-repeat;
+ background-size: 100% 100%;
+
 }
 
 body {
   background: var(--site-background);
-  color: #333333;
+  color: var(--site-text-color);
   margin-top: 5rem;
   font-family: var(--comfortaa-font);
 }
@@ -51,12 +63,12 @@ ul {
   background: var(--panel-background);
   padding: 10px 20px;
   border-radius: 10px;
-  box-shadow: 0 0 70px 0px rgb(223, 223, 223);
+  /* box-shadow: 0 0 70px 0px rgb(223, 223, 223); */
   transition: box-shadow 0.3s;
 }
 
 .content-section:hover {
-  box-shadow: 0 0 30px 3px rgb(168, 168, 168); 
+  /* box-shadow: 0 0 30px 3px rgb(168, 168, 168);  */
 }
 
 .list-group-item {
@@ -116,32 +128,32 @@ a.article-title:hover {
 }
 
 .btn{
-  color: var(--navbar-color);
-  border-color: var(--navbar-color);
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 
 .btn:hover, .btn-info {
-  background: var(--navbar-color);
-  border-color: var(--navbar-color);
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
   color: var(--navbar-text-color-hover);
 }
 
 .btn-outline-info:not(:disabled):not(.disabled).active, .btn-outline-info:not(:disabled):not(.disabled):active, .show>.btn-outline-info.dropdown-toggle {
   color: var(--navbar-text-color-hover);
-  background-color: var(--navbar-color);
-  border-color: var(--navbar-color);
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 
 .btn-info:not(:disabled):not(.disabled).active, .btn-info:not(:disabled):not(.disabled):active, .show>.btn-info.dropdown-toggle {
   color: var(--navbar-text-color-hover);
-  background-color: var(--navbar-color);
-  border-color: var(--navbar-color);
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 
 .btn-info.focus, .btn-info:focus {
   color: var(--navbar-text-color-hover);
-  background-color: var(--navbar-color);
-  border-color: var(--navbar-color);
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
   box-shadow: 0 0 0 0.2rem black;
 }
 
