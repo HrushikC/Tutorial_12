@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
     path('', views.home, name='tutor-home'),
     path('about/', views.about, name='tutor-about'),
-    path('browse_tutors/', TutorProfileListView.as_view(), name='tutor-browseTutors'),
+    path('browse_tutors/', views.browse_tutors, name='tutor-browseTutors'),
     path('404/', views.error404, name='test-404'),
     # path('user/<str:username>', UserPostListView.as_view(), name='user-profile'),
     path('profile/<int:pk>/', ProfileDetailView.as_view(), name='profile-detail'),

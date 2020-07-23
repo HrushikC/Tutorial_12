@@ -1,6 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import Paginator
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from .models import TutorProfile
+from users.models import Account
+from .filters import TutorFilter
 from django.views.generic import (
     ListView,
     DetailView,
@@ -8,26 +12,36 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import TutorProfile
-from users.models import Account
 
 
 def home(request):
     return render(request, 'tutor/home.html', {'title': 'Home'})
 
-# def browseTutors(request):
-#     content = {
-#         'profiles': TutorProfile.objects.all()
-#     }
-#     return render(request, 'tutor/browse_tutors.html', content)
+
+def browse_tutors(request):
+    profiles = TutorProfile.objects.all()
+    profiles = profiles.filter(is_hidden=False)
+    profiles = profiles.order_by('-date_posted')
+
+    paginator = Paginator(profiles, 5)  # Show 5 contacts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    filter = TutorFilter(request.GET, profiles)
+
+    content = {
+        'page_obj': page_obj,
+        'filter': filter
+    }
+    return render(request, 'tutor/browse_tutors.html', content)
 
 
-class TutorProfileListView(ListView):
-    model = TutorProfile
-    template_name = 'tutor/browse_tutors.html'  # <app>/<model>_<viewtype>.html
-    context_object_name = 'profiles'
-    ordering = ['-date_posted']
-    paginate_by = 5
+# class TutorProfileListView(ListView):
+#     model = TutorProfile
+#     template_name = 'tutor/browse_tutors.html'  # <app>/<model>_<viewtype>.html
+#     context_object_name = 'profiles'
+#     ordering = ['-date_posted']
+#     paginate_by = 5
 
 
 # class UserPostListView(ListView):
