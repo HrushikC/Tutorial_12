@@ -20,7 +20,7 @@ class TutorProfile(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return self.user
+        return self.user.username
 
     def get_absolute_url(self):
-        return reverse('profile-detail', kwargs={'username': self.user})
+        return reverse('profile-detail', kwargs={'pk': self.user.id})
