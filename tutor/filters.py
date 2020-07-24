@@ -5,7 +5,7 @@ from .models import TutorProfile
 class TutorFilter(django_filters.FilterSet):
     model = TutorProfile
 
-    fee = django_filters.NumberFilter(field_name='fee', lookup_expr='lt', label='Price Cap:')
+    fee = django_filters.NumberFilter(field_name='fee', lookup_expr='lt', label='Price Cap ($/hr):')
     rating = django_filters.NumberFilter(field_name='rating', lookup_expr='gt', label='Minimum Tutor Rating:')
 
     METHOD_CHOICES = (

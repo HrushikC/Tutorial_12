@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Mathematics",
+    "description": "Includes all levels of math from grade school to college level courses."
+  },
+  {
+    "name": "Science",
+    "description": "All science courses starting in grade school to college courses fall in this subject."
+  },
+  {
+    "name": "English",
+    "description": "All levels of the English language are encompasses in this subject."
+  },
+  {
+    "name": "Social Studies",
+    "description": "Includes grade school topics as well as focuses in economics, humanities, history, politics, psychology and more."
+  },
+  {
+    "name": "Computer Science",
+    "description": "This subject includes all topics relating to computing and software. Beginner Programmers to Advanced Software Engineers can all connect here."
+  },
+  {
+    "name": "SAT/ACT/Other Test Prep",
+    "description": "This subject may involve tutors aiding students in any form of standardized test as tutors prefer."
+  },
+  {
+    "name": "Life Skills",
+    "description": "This can include topics like personal finance, communication and more."
+  },
+  {
+    "name": "Competitions",
+    "description": "This subject option encompasses academic competitions in the various subjects. If students want private tutoring for competitions like AMC, MathCounts or the Olympiads, they would come here."
+  }
+]

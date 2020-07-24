@@ -16,14 +16,14 @@ def home(request):
     return render(request, 'tutor/home.html', {'title': 'Home'})
 
 
-def browse_tutors(request): # make ListView version of this method later
+def browse_tutors(request):  # make ListView version of this method later
     profiles = TutorProfile.objects.all()
     profiles = profiles.filter(is_hidden=False)
     profiles = profiles.order_by('-date_posted')
 
     filter_results = TutorFilter(request.GET, profiles)
 
-    paginator = Paginator(filter_results.qs, 5)  # Show 5 contacts per page.
+    paginator = Paginator(filter_results.qs, 5)  # Show 5 profiles per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
