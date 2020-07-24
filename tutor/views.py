@@ -1,9 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.models import User
 from .models import TutorProfile
-from users.models import Account
 from .filters import TutorFilter
 from django.views.generic import (
     ListView,
@@ -18,22 +16,23 @@ def home(request):
     return render(request, 'tutor/home.html', {'title': 'Home'})
 
 
-def browse_tutors(request):
+def browse_tutors(request): # make ListView version of this method later
     profiles = TutorProfile.objects.all()
     profiles = profiles.filter(is_hidden=False)
     profiles = profiles.order_by('-date_posted')
 
-    paginator = Paginator(profiles, 5)  # Show 5 contacts per page.
+    filter_results = TutorFilter(request.GET, profiles)
+
+    paginator = Paginator(filter_results.qs, 5)  # Show 5 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    filter = TutorFilter(request.GET, profiles)
-
-    content = {
+    context = {
         'page_obj': page_obj,
-        'filter': filter
+        'filter': filter_results
     }
-    return render(request, 'tutor/browse_tutors.html', content)
+
+    return render(request, 'tutor/browse_tutors.html', context)
 
 
 # class TutorProfileListView(ListView):
