@@ -4,9 +4,21 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 
 
+class Subject(models.Model):
+    name = models.CharField(max_length=30)
+    description = models.TextField(default=None)
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+
 class TutorProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField()
+    subjects = models.ManyToManyField(Subject)
     subject_details = models.TextField(default="")
     zipcode = models.CharField(max_length=5, default=None)
     tutor_methods = models.TextChoices('medium of instruction', 'Online In-Person Both')
@@ -26,14 +38,3 @@ class TutorProfile(models.Model):
     def get_absolute_url(self):
         return reverse('profile-detail', kwargs={'pk': self.user.id})
 
-
-class Subject(models.Model):
-    name = models.CharField(max_length=30)
-    description = models.TextField(default=None)
-    tutor_profile = models.ManyToManyField(TutorProfile)
-
-    class Meta:
-        ordering = ['name']
-
-    def __str__(self):
-        return self.name

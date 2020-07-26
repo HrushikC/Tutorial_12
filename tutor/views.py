@@ -1,8 +1,9 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import TutorProfile
+from .models import TutorProfile, Subject
 from .filters import TutorFilter
+from .forms import ProfileCreateForm, ProfileUpdateForm
 from django.views.generic import (
     ListView,
     DetailView,
@@ -62,8 +63,7 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
 
 
 class ProfileCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
-    model = TutorProfile
-    fields = ['bio', 'method', 'fee', 'zipcode', 'resume', 'contact_info']
+    form_class = ProfileCreateForm
     template_name = 'tutor/tutorprofile_create_form.html'
 
     def form_valid(self, form):
@@ -81,7 +81,7 @@ class ProfileCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
 
 class ProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    fields = ['bio', 'method', 'fee', 'zipcode', 'resume', 'contact_info']
+    form_class = ProfileUpdateForm
     template_name = 'tutor/tutorprofile_update_form.html'
 
     def get_object(self):
