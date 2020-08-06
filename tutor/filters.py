@@ -1,5 +1,5 @@
 import django_filters
-from .models import TutorProfile
+from .models import TutorProfile, Subject
 
 
 class TutorFilter(django_filters.FilterSet):
@@ -14,4 +14,5 @@ class TutorFilter(django_filters.FilterSet):
     )
     method = django_filters.ChoiceFilter(field_name='method', label='Select Method:',
                                          empty_label='Choose...', choices=METHOD_CHOICES, exclude=True)
-
+    # subjects = django_filters.ChoiceFilter(field_name='subjects', label='Select Subject(s):',
+    #                                        empty_label='Choose', choices=Subject.objects.all())

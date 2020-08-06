@@ -28,9 +28,9 @@
                     </div>
                     <p class="article-content">Bio: {{ profile.bio }}</p>
                     {% if profile.method == 'Both' %}
-                    <p class="article-content">Method of Instruction: Either Online or In-Person</p>
+                        <p class="article-content">Method of Instruction: Either Online or In-Person</p>
                     {% else %}
-                    <p class="article-content">Method of Instruction: {{ profile.method }}</p>
+                        <p class="article-content">Method of Instruction: {{ profile.method }}</p>
                     {% endif %}
                     <p class="article-content">Hourly Fee: ${{ profile.fee }}</p>
                 </div>
