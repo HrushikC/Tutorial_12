@@ -75,12 +75,14 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# Superuser: h*****k; t**********2
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'tutor_site',
         'USER': 'postgres',
-        'PASSWORD': 'ash6051!',
+        'PASSWORD': 'Rushi123!',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
