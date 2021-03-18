@@ -1,6 +1,6 @@
 import json
 from django.contrib.auth.models import User
-from tutor.models import TutorProfile
+from tutor.models import TutorProfile, Subject
 
 # go to manage.py shell and run exec(open('uploadData.py').read())
 
@@ -20,7 +20,6 @@ for i in data:
             i[j]
         except:
             i[j] = ""
-
 
 for p in data:
     user = User(**dict(zip(keys, [p[i] for i in keys])))
@@ -44,11 +43,28 @@ for i in data:
         except:
             i[j] = "ok"
 
-
 for p in data:
-    # queryset = TutorProfile.objects.filter(user_id=p['user_id'])
-    # if not queryset:
-
-    # tp = TutorProfile(bio=p['bio'], zipcode=p['zipcode'], method=p['method'], fee=p['fee'], user_id=p['user_id'])
     tp = TutorProfile(**dict(zip(keys, [p[i] for i in keys])))
     tp.save()
+
+
+# Subjects:
+
+with open('subjects.json') as f:
+    data = json.load(f)
+
+keys = []
+for i in data:
+    keys += i.keys()
+keys = set(keys)
+
+for i in data:
+    for j in keys:
+        try:
+            i[j]
+        except:
+            i[j] = ""
+
+for p in data:
+    subject = Subject(**dict(zip(keys, [p[i] for i in keys])))
+    subject.save()
