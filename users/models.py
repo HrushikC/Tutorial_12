@@ -5,14 +5,17 @@ from PIL import Image
 
 class Account(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    is_tutor = models.BooleanField(default=False)
+    account_type = models.TextChoices('Type of Account', (('REGULAR USER', 'Regular User'), ('TUTOR', 'Tutor')))
+    is_tutor = models.CharField(verbose_name="Type of Account: (Tutor/Regular)", max_length=15,
+                                choices=account_type.choices, default=None)
+    created_tutorprofile = models.BooleanField(default=False)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
     def __str__(self):
         return f"{self.user}'s Account"
 
     def save(self, *args, **kwargs):
-        super(Account,self).save(*args, **kwargs)
+        super(Account, self).save(*args, **kwargs)
 
         img = Image.open(self.image.path)
 

@@ -68,3 +68,5 @@ for i in data:
 for p in data:
     subject = Subject(**dict(zip(keys, [p[i] for i in keys])))
     subject.save()
+
+# manually changed account data so that all test users are tutors and that they created tutorprofiles

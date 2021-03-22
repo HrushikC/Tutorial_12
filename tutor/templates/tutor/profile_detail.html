@@ -5,10 +5,10 @@
     <div class="media-body">
       <div class="article-metadata">
         <h2 class="mr-2">{{ object.user }}</h2>
-        <!--<small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>-->
+        <small class="text-muted">Profile Created On {{ object.date_posted|date:"F d, Y" }}</small>
         {% if object.user == user %}
           <div>
-            <a class="btn btn-outline-info btn-sm mt-1 mb-1" href="{% url 'profile-update' object.user.id %}">Update</a>
+            <a class="btn btn-outline-info btn-sm mt-2 mb-3" href="{% url 'profile-update' object.user.id %}">Edit Profile</a>
           </div>
         {% endif %}
       </div>

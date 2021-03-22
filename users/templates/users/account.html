@@ -16,19 +16,26 @@
               <legend class="border-bottom mb-4">Account Info</legend>
               {{ u_form|crispy }}
               {{ p_form|crispy }}
-              {% if user.account.is_tutor %}
-                <a class="mr-2" href="{% url 'profile-detail' user.id %}">View My Profile</a>
+              {{ t_form|crispy }}
+              {% if user.account.is_tutor == 'Tutor' %}
+                {% if user.account.created_profile == true %} <!--why can't the statement work w/o '== true'.-->
+                    <a class="mr-2" href="{% url 'profile-detail' user.id %}">View My TutorProfile</a>
+                {% else %}
+                    <a class="mr-2" href="{% url 'profile-create' %}">Create New TutorProfile</a>
+                {% endif %}
               {% endif %}
           </fieldset>
           <div class="form-group">
               <button class="btn btn-outline-info" type="submit">Update</button>
           </div>
-        <label class="switch">
-            <input type="checkbox" checked>
-            <span class="slider round"></span>
-        </label>
+<!--        <label class="switch">-->  <!--ON/OFF Switch Code-->
+<!--            <input type="checkbox" checked>-->
+<!--            <span class="slider round"></span>-->
+<!--        </label>-->
       </form>
     </div>
+    </br>
+    </br>
     </br>
     </br>
     </br>

@@ -34,4 +34,10 @@ class UserUpdateForm(forms.ModelForm):
 class ProfilePicUpdateForm(forms.ModelForm):
     class Meta:
         model = Account
-        fields = ['image', 'is_tutor']
+        fields = ['image']
+
+
+class AccountUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = ['is_tutor']

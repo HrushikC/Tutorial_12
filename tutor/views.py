@@ -2,6 +2,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import TutorProfile, Subject
+from users.models import Account
 from .filters import TutorFilter
 from .forms import ProfileCreateForm, ProfileUpdateForm
 from django.views.generic import (
@@ -20,11 +21,11 @@ def home(request):
 def browse_tutors(request):  # make ListView version of this method later
     profiles = TutorProfile.objects.all()
     profiles = profiles.filter(is_hidden=False)
-    profiles = profiles.order_by('-date_posted')
+    profiles = profiles.order_by('-date_posted')  # order by something else in future
 
     filter_results = TutorFilter(request.GET, profiles)
 
-    paginator = Paginator(filter_results.qs, 5)  # Show 5 profiles per page.
+    paginator = Paginator(filter_results.qs, 5)  # Show 5 profiles per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -66,18 +67,19 @@ class ProfileCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     form_class = ProfileCreateForm
     template_name = 'tutor/tutorprofile_create_form.html'
 
+    def update_account(self):
+        account = Account.objects.get(user_id=self.request.user.id)
+        account.created_tutorprofile = True
+
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
     def test_func(self):
-        tp_qset = TutorProfile.objects.filter(user_id=self.request.user.id)
-        # account_qset = Account.objects.filter(user_id=self.request.user.id).values()
-        if not tp_qset: # and account_qset[0]['is_tutor']:
+        tp = TutorProfile.objects.get(user_id=self.request.user.id)
+        if not tp:
             return True
         return False
-    # At a later phase, we will delete the hashtags up top to reveal the other code after doing more testing.
-    # Profile Create Permissions --ISSUE--
 
 
 class ProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -113,7 +115,7 @@ def about(request):
     return render(request, 'tutor/about.html', {'title': 'About'})
 
 
-# Test 404. Temporary Path. Remove method when debug = false.
+# Test 404. Temporary Path. Remove method when settings.debug = false.
 def error404(request):
     return render(request, 'tutor/404.html', {'title': 'Test-404'})
 
