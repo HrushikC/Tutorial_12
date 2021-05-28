@@ -54,15 +54,15 @@ class BrowseProfilesView(ListView):
         return context
 
 
-# class UserPostListView(ListView):
-#     model = TutorProfile
-#     template_name = 'tutor/user_posts.html'  # <app>/<model>_<viewtype>.html
-#     context_object_name = 'posts'
-#     paginate_by = 5
-#
-#     def get_queryset(self):
-#         user = get_object_or_404(User, username=self.kwargs.get('username'))
-#         return TutorProfile.objects.filter(author=user).order_by('-date_posted')
+class MyTutorsListView(LoginRequiredMixin, ListView):
+    model = TutorProfile
+    template_name = 'tutor/tutor_list.html'  # <app>/<model>_<viewtype>.html
+    context_object_name = 'profiles'
+    paginate_by = 5
+
+    def get_queryset(self):
+        account = get_object_or_404(Account, user_id=self.request.user.id)
+        return account.tutorprofiles.all()
 
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
@@ -73,7 +73,7 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        account = Account.objects.get(user_id=self.request.user.id)
+        account = get_object_or_404(Account, user_id=self.request.user.id)
         if 'add' in self.request.GET:
             account.tutorprofiles.add(self.get_object())
             messages.success(self.request, f"You have successfully added {self.get_object().user.username}'s "
@@ -93,12 +93,12 @@ class ProfileCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        account = Account.objects.get(user_id=self.request.user.id)
+        account = get_object_or_404(Account, user_id=self.request.user.id)
         account.created_tutorprofile = True
         return super().form_valid(form)
 
     def test_func(self):
-        tp = TutorProfile.objects.get(user_id=self.request.user.id)
+        tp = get_object_or_404(TutorProfile, user_id=self.request.user.id)
         if not tp:
             return True
         return False
@@ -108,15 +108,12 @@ class ProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form_class = ProfileUpdateForm
     template_name = 'tutor/tutorprofile_update_form.html'
 
-    def get_object(self):
-        return get_object_or_404(TutorProfile, user_id=self.kwargs['pk'])
-
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
     def test_func(self):
-        profile = self.get_object()
+        profile = get_object_or_404(TutorProfile, user_id=self.kwargs['pk'])
         if self.request.user == profile.user:
             return True
         return False
