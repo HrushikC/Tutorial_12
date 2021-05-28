@@ -1,26 +1,32 @@
 {% extends "tutor/base.html" %}
 {% block content %}
   <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ object.user.account.image.url }}">
-    <div class="media-body">
-      <div class="article-metadata">
-        <h2 class="mr-2">{{ object.user }}</h2>
-        <small class="text-muted">Profile Created On {{ object.date_posted|date:"F d, Y" }}</small>
-        {% if object.user == user %}
-          <div>
-            <a class="btn btn-outline-info btn-sm mt-2 mb-3" href="{% url 'profile-update' object.user.id %}">Edit Profile</a>
-          </div>
-        {% endif %}
-      </div>
-      <p class="article-content">Bio: {{ object.bio }}</p>
-      {% if object.method == 'Both' %}
-        <p class="article-content">Method of Instruction: Either Online or In-Person</p>
-      {% else %}
-        <p class="article-content">Method of Instruction: {{ object.method }}</p>
-      {% endif %}
-      <p class="article-content">Hourly Fee: ${{ object.fee }}</p>
-      <p class="article-content">Contact Info: {{ object.contact_info }}</p>
+	<img class="rounded-circle article-img" src="{{ object.user.account.image.url }}">
+	<div class="media-body">
+	  <div class="article-metadata">
+		{% if object.user == user %}
+		  <a class="btn btn-outline-info btn-sm mt-2 mr-1 float-right" href="{% url 'profile-update' user.id %}">Edit Profile</a>
+		{% else %}
+          <form>
+            {% if has_tutor %}
+              <button class="btn btn-outline-info btn-sm mt-2 mr-1 float-right" onclick="location.href='{% url 'profile-detail' object.user.id %}'" value=true name="remove">Remove</button>
+            {% else %}
+              <button class="btn btn-outline-info btn-sm mt-2 mr-1 float-right" onclick="location.href='{% url 'profile-detail' object.user.id %}'" value=true name="add">Add to List</button>
+            {% endif %}
+          </form>
+		{% endif %}
+		<h2 class="mr-2">{{ object.user }}</h2>
+		<small class="text-muted">Profile Created On {{ object.date_posted|date:"F d, Y" }}</small>
+	  </div>
+	  <p class="article-content mt-3">Bio: {{ object.bio }}</p>
+	  {% if object.method == 'Both' %}
+		<p class="article-content">Method of Instruction: Either Online or In-Person</p>
+	  {% else %}
+		<p class="article-content">Method of Instruction: {{ object.method }}</p>
+	  {% endif %}
+	  <p class="article-content">Hourly Fee: ${{ object.fee }}</p>
+	  <p class="article-content">Contact Info: {{ object.contact_info }}</p>
 
-    </div>
+	</div>
   </article>
 {% endblock content %}

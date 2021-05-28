@@ -22,5 +22,5 @@ class TutorFilter(django_filters.FilterSet):
 
     method = django_filters.ChoiceFilter(field_name='method', label='Select Method:',
                                          empty_label='Choose... ', choices=METHOD_CHOICES, exclude=True)
-    subjects_filter = django_filters.ChoiceFilter(field_name='subjects', label='Select Subject(s):',
+    subjects_filter = django_filters.ChoiceFilter(field_name='subjects', label='Select Subject:',
                                                   empty_label='Choose... ', choices=SUBJECT_CHOICES)

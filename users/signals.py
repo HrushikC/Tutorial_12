@@ -5,11 +5,11 @@ from .models import Account
 
 
 @receiver(post_save, sender=User)
-def create_profile(sender, instance, created, **kwargs):
+def create_account(sender, instance, created, **kwargs):
     if created:
         Account.objects.create(user=instance)
 
 
 @receiver(post_save, sender=User)
-def save_profile(sender, instance, **kwargs):
+def save_account(sender, instance, **kwargs):
     instance.account.save()
